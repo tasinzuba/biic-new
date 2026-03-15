@@ -99,7 +99,7 @@ export default function AboutPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-red-950/90 via-red-900/40 to-transparent" />
         {/* Red accent overlay on one side */}
         <div className="absolute inset-0 bg-gradient-to-r from-red-900/60 to-transparent" />
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pb-14">
@@ -134,7 +134,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Our Story</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-6">
+            <h2 className="text-4xl font-bold text-red-900 mt-2 mb-6">
               15 Years of Transforming Lives Through Education
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -166,8 +166,8 @@ export default function AboutPage() {
             ].map((img, i) => (
               <div key={i} className={`relative overflow-hidden rounded-2xl group ${i === 0 ? "col-span-2 h-48" : "h-36"}`}>
                 <Image src={img.src} alt={img.label} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition" />
-                <span className="absolute bottom-2 left-3 text-white text-xs font-semibold bg-black/50 px-2.5 py-1 rounded-full backdrop-blur-sm">
+                <div className="absolute inset-0 bg-red-900/20 group-hover:bg-red-900/10 transition" />
+                <span className="absolute bottom-2 left-3 text-white text-xs font-semibold bg-red-900/60 px-2.5 py-1 rounded-full backdrop-blur-sm">
                   {img.label}
                 </span>
               </div>
@@ -177,7 +177,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-red-50">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission */}
@@ -190,10 +190,10 @@ export default function AboutPage() {
             </div>
 
             {/* Vision */}
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-white rounded-3xl p-10">
+            <div className="bg-gradient-to-br from-red-900 to-red-800 text-white rounded-3xl p-10">
               <div className="text-5xl mb-5">🔭</div>
               <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-gray-300 leading-relaxed text-lg">
+              <p className="text-red-100 leading-relaxed text-lg">
                 To become the most trusted bridge between Bangladeshi talent and global opportunity — placing 10,000+ students in the world's best universities by 2030, and building a generation of globally-minded Bangladeshi leaders.
               </p>
             </div>
@@ -202,9 +202,9 @@ export default function AboutPage() {
           {/* Values */}
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:border-red-200 transition text-center">
+              <div key={v.title} className="bg-white rounded-2xl p-6 border border-red-100 shadow-sm hover:shadow-md hover:border-red-200 transition text-center">
                 <div className="text-4xl mb-3">{v.icon}</div>
-                <h4 className="font-bold text-gray-800 text-lg mb-2">{v.title}</h4>
+                <h4 className="font-bold text-red-800 text-lg mb-2">{v.title}</h4>
                 <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
@@ -217,7 +217,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">The People Behind BIIC</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Meet Our Expert Team</h2>
+            <h2 className="text-4xl font-bold text-red-900 mt-2">Meet Our Expert Team</h2>
             <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
               Our counselors are not just professionals — many are former international students who understand exactly what you are going through.
             </p>
@@ -225,7 +225,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member) => (
-              <div key={member.name} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100">
+              <div key={member.name} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-red-100">
                 {/* Photo */}
                 <div className="relative h-60 overflow-hidden">
                   <Image
@@ -234,7 +234,7 @@ export default function AboutPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-red-950/80 to-transparent" />
                   <div className="absolute bottom-3 left-4">
                     <span className="text-xs bg-red-600 text-white font-semibold px-2.5 py-1 rounded-full">
                       {member.country}
@@ -243,7 +243,7 @@ export default function AboutPage() {
                 </div>
                 {/* Info */}
                 <div className="p-5">
-                  <h3 className="font-bold text-gray-900 text-lg">{member.name}</h3>
+                  <h3 className="font-bold text-red-900 text-lg">{member.name}</h3>
                   <p className="text-red-600 text-sm font-semibold mb-3">{member.title}</p>
                   <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
                 </div>
@@ -254,11 +254,11 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-red-50">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Our Journey</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">15 Years of Milestones</h2>
+            <h2 className="text-4xl font-bold text-red-900 mt-2">15 Years of Milestones</h2>
           </div>
           <div className="relative">
             <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-red-200 hidden md:block" />
@@ -266,8 +266,8 @@ export default function AboutPage() {
               {milestones.map((m, i) => (
                 <div key={i} className={`relative flex gap-6 items-center ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                   {/* Content */}
-                  <div className="flex-1 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:border-red-200 transition hover:shadow-md">
-                    <div className="font-bold text-gray-800">{m.event}</div>
+                  <div className="flex-1 bg-white rounded-2xl p-5 shadow-sm border border-red-100 hover:border-red-200 transition hover:shadow-md">
+                    <div className="font-bold text-red-800">{m.event}</div>
                   </div>
                   {/* Year bubble */}
                   <div className="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm z-10 flex-shrink-0 shadow-lg text-center leading-tight">
@@ -286,14 +286,14 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Why BIIC Global</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Why 5,000+ Students Trust Us</h2>
+            <h2 className="text-4xl font-bold text-red-900 mt-2">Why 5,000+ Students Trust Us</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChoose.map((item) => (
-              <div key={item.title} className="flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-200 transition">
+              <div key={item.title} className="flex items-start gap-4 bg-white border border-red-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-200 transition">
                 <span className="text-3xl flex-shrink-0">{item.icon}</span>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg mb-1">{item.title}</h3>
+                  <h3 className="font-bold text-red-800 text-lg mb-1">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </div>

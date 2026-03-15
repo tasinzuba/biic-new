@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat c:/Users/biicw/biic-new/src/lib/graphql/*)",
+      "Bash(ls c:/Users/biicw/biic-new/.env*)"
+    ]
+  }
+}
