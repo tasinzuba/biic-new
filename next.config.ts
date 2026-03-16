@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**.yoursite.com",
+        hostname: "new.biic.com.bd",
       },
     ],
   },

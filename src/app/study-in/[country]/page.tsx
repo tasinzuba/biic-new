@@ -99,7 +99,7 @@ export default async function CountryPage({ params }: Props) {
     intakes: (cd.intakes ?? []).map((i: any) => ({
       name: i.name,
       badge: i.badge,
-      badgeColor: i.badgeColor ?? "bg-red-600",
+      badgeColor: i.badgeColor || "bg-red-600",
       icon: i.icon ?? "📅",
       startDate: i.startDate,
       applicationDeadline: i.applicationDeadline,
@@ -126,6 +126,25 @@ export default async function CountryPage({ params }: Props) {
 
   return (
     <>
+      <style>{`
+        @keyframes floatUp {
+          0%, 100% { transform: translateY(0px) scale(1); opacity: 0.5; }
+          50% { transform: translateY(-22px) scale(1.08); opacity: 0.8; }
+        }
+        @keyframes floatSide {
+          0%, 100% { transform: translateX(0px) translateY(0px); opacity: 0.4; }
+          33% { transform: translateX(12px) translateY(-10px); opacity: 0.7; }
+          66% { transform: translateX(-8px) translateY(-18px); opacity: 0.5; }
+        }
+        .b { border-radius: 9999px; position: absolute; pointer-events: none; }
+        .b1 { animation: floatUp 6s ease-in-out infinite; }
+        .b2 { animation: floatUp 8s ease-in-out infinite 1.5s; }
+        .b3 { animation: floatSide 7s ease-in-out infinite 0.8s; }
+        .b4 { animation: floatSide 9s ease-in-out infinite 3s; }
+        .b5 { animation: floatUp 5s ease-in-out infinite 2s; }
+        .b6 { animation: floatSide 10s ease-in-out infinite 0.3s; }
+      `}</style>
+
       {/* ── HERO ── */}
       <section className="relative h-[85vh] min-h-[560px] flex items-center">
         <Image
@@ -171,8 +190,14 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── STATS BAR ── */}
       {data.stats.length > 0 && (
-        <section className="bg-red-600 text-white py-6">
-          <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <section className="relative overflow-hidden bg-gradient-to-r from-red-700 via-red-600 to-red-500 text-white py-6">
+          <div className="b b1 bg-white/10" style={{width:14,height:14,top:'20%',left:'5%'}} />
+          <div className="b b2 bg-white/15" style={{width:8,height:8,top:'60%',left:'18%'}} />
+          <div className="b b3 bg-white/10" style={{width:18,height:18,top:'15%',right:'10%'}} />
+          <div className="b b4 bg-white/12" style={{width:10,height:10,bottom:'20%',right:'30%'}} />
+          <div className="b b5 bg-white/15" style={{width:12,height:12,bottom:'15%',left:'45%'}} />
+          <div className="b b6 bg-white/10" style={{width:16,height:16,top:'40%',right:'45%'}} />
+          <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 relative z-10">
             {data.stats.map((s: any) => (
               <div key={s.label} className="text-center py-2">
                 <div className="text-2xl mb-1">{s.icon}</div>
@@ -185,8 +210,14 @@ export default async function CountryPage({ params }: Props) {
       )}
 
       {/* ── OVERVIEW ── */}
-      <section className="py-16 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative overflow-hidden py-16 px-4 bg-white">
+        <div className="b b1 bg-red-400/20" style={{width:12,height:12,top:'10%',right:'8%'}} />
+        <div className="b b3 bg-red-300/25" style={{width:18,height:18,top:'30%',right:'20%'}} />
+        <div className="b b2 bg-red-500/15" style={{width:10,height:10,bottom:'20%',left:'5%'}} />
+        <div className="b b4 bg-red-400/20" style={{width:16,height:16,bottom:'10%',left:'30%'}} />
+        <div className="b b5 bg-red-300/20" style={{width:8,height:8,top:'55%',left:'18%'}} />
+        <div className="b b6 bg-red-400/15" style={{width:14,height:14,top:'70%',right:'12%'}} />
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           <div>
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Overview</span>
             <h2 className="text-4xl font-bold text-red-900 mt-2 mb-5">
@@ -217,8 +248,11 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── PHOTO GALLERY ── */}
       {data.gallery.length > 0 && (
-        <section className="py-8 px-4 bg-red-50">
-          <div className="max-w-6xl mx-auto">
+        <section className="relative overflow-hidden py-8 px-4 bg-red-50">
+          <div className="b b2 bg-red-400/20" style={{width:10,height:10,top:'15%',left:'3%'}} />
+          <div className="b b4 bg-red-500/15" style={{width:14,height:14,bottom:'20%',right:'6%'}} />
+          <div className="b b1 bg-red-300/20" style={{width:8,height:8,top:'60%',left:'50%'}} />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               {data.gallery.map((g: any, i: number) => (
                 <div key={i} className={`relative overflow-hidden rounded-2xl group ${i === 0 ? "col-span-2 row-span-2 h-72 md:h-80" : "h-36 md:h-[calc(160px)]"}`}>
@@ -241,8 +275,13 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── TOP UNIVERSITIES ── */}
       {data.topUniversities.length > 0 && (
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
+      <section className="relative overflow-hidden py-16 px-4 bg-white">
+          <div className="b b1 bg-red-400/20" style={{width:12,height:12,top:'8%',left:'2%'}} />
+          <div className="b b3 bg-red-500/15" style={{width:16,height:16,top:'25%',right:'4%'}} />
+          <div className="b b5 bg-red-300/20" style={{width:10,height:10,bottom:'15%',left:'40%'}} />
+          <div className="b b6 bg-red-400/15" style={{width:14,height:14,bottom:'5%',left:'10%'}} />
+          <div className="b b2 bg-red-300/20" style={{width:8,height:8,top:'55%',right:'25%'}} />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-10">
               <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Top Picks</span>
               <h2 className="text-4xl font-bold text-red-900 mt-2">
@@ -287,8 +326,13 @@ export default async function CountryPage({ params }: Props) {
       )}
 
       {/* ── REQUIREMENTS + COST ── */}
-      <section className="py-16 px-4 bg-red-50">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative overflow-hidden py-16 px-4 bg-red-50">
+        <div className="b b2 bg-red-400/20" style={{width:14,height:14,top:'8%',right:'5%'}} />
+        <div className="b b4 bg-red-500/15" style={{width:10,height:10,top:'45%',left:'3%'}} />
+        <div className="b b1 bg-red-300/20" style={{width:16,height:16,bottom:'10%',right:'15%'}} />
+        <div className="b b3 bg-red-400/15" style={{width:8,height:8,top:'65%',right:'40%'}} />
+        <div className="b b5 bg-red-300/20" style={{width:12,height:12,bottom:'25%',left:'20%'}} />
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-10">
             <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">What You Need</span>
             <h2 className="text-4xl font-bold text-red-900 mt-2">Requirements & Costs</h2>
@@ -354,8 +398,14 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── INTAKE SECTION ── */}
       {data.intakes.length > 0 && (
-        <section className="py-16 px-4 bg-red-50">
-          <div className="max-w-6xl mx-auto">
+        <section className="relative overflow-hidden py-16 px-4 bg-white">
+          <div className="b b3 bg-red-400/20" style={{width:12,height:12,top:'5%',left:'5%'}} />
+          <div className="b b1 bg-red-300/20" style={{width:16,height:16,top:'20%',right:'8%'}} />
+          <div className="b b5 bg-red-500/15" style={{width:10,height:10,bottom:'20%',left:'22%'}} />
+          <div className="b b2 bg-red-400/15" style={{width:14,height:14,bottom:'8%',right:'30%'}} />
+          <div className="b b4 bg-red-300/20" style={{width:8,height:8,top:'55%',right:'6%'}} />
+          <div className="b b6 bg-red-400/15" style={{width:18,height:18,top:'40%',left:'45%'}} />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-10">
               <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Application Timeline</span>
               <h2 className="text-4xl font-bold text-red-900 mt-2">Intakes for {data.name}</h2>
@@ -371,7 +421,7 @@ export default async function CountryPage({ params }: Props) {
                     intake.status === "open" ? "border-red-500" : "border-red-100"
                   }`}
                 >
-                  <div className={`${intake.badgeColor} px-6 py-4 flex items-center justify-between`}>
+                  <div className="bg-gradient-to-r from-red-700 to-red-500 px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-2xl">{intake.icon}</span>
                       <span className="text-white font-bold text-lg">{intake.name}</span>
@@ -449,8 +499,13 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── SUCCESS STORIES ── */}
       {data.successStories.length > 0 && (
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
+      <section className="relative overflow-hidden py-16 px-4 bg-red-50">
+          <div className="b b6 bg-red-400/20" style={{width:14,height:14,top:'6%',left:'3%'}} />
+          <div className="b b2 bg-red-500/15" style={{width:10,height:10,top:'28%',right:'4%'}} />
+          <div className="b b4 bg-red-300/20" style={{width:16,height:16,bottom:'10%',left:'30%'}} />
+          <div className="b b1 bg-red-400/15" style={{width:8,height:8,bottom:'25%',right:'22%'}} />
+          <div className="b b3 bg-red-300/20" style={{width:12,height:12,top:'65%',left:'10%'}} />
+          <div className="max-w-6xl mx-auto relative z-10">
             <div className="text-center mb-10">
               <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Real Students, Real Results</span>
               <h2 className="text-4xl font-bold text-red-900 mt-2">Our Success Stories</h2>
@@ -512,8 +567,13 @@ export default async function CountryPage({ params }: Props) {
 
       {/* ── FAQ ── */}
       {data.faq.length > 0 && (
-        <section className="py-16 px-4">
-          <div className="max-w-3xl mx-auto">
+        <section className="relative overflow-hidden py-16 px-4 bg-white">
+          <div className="b b1 bg-red-400/20" style={{width:14,height:14,top:'6%',right:'6%'}} />
+          <div className="b b3 bg-red-500/15" style={{width:10,height:10,top:'42%',left:'3%'}} />
+          <div className="b b5 bg-red-300/20" style={{width:16,height:16,bottom:'8%',right:'12%'}} />
+          <div className="b b2 bg-red-400/15" style={{width:8,height:8,bottom:'32%',left:'18%'}} />
+          <div className="b b4 bg-red-300/20" style={{width:12,height:12,top:'25%',right:'25%'}} />
+          <div className="max-w-3xl mx-auto relative z-10">
             <div className="text-center mb-10">
               <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Got Questions?</span>
               <h2 className="text-4xl font-bold text-red-900 mt-2">Frequently Asked Questions</h2>
@@ -538,26 +598,30 @@ export default async function CountryPage({ params }: Props) {
       )}
 
       {/* ── CTA BANNER ── */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <Image src={data.heroImage} alt="CTA Background" fill className="object-cover" />
-        <div className="absolute inset-0 bg-red-700/90" />
-        <div className="relative z-10 max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+      <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-red-50 to-white">
+        <div className="b b1 bg-red-400/25" style={{width:14,height:14,top:'8%',left:'4%'}} />
+        <div className="b b2 bg-red-500/20" style={{width:10,height:10,top:'20%',right:'6%'}} />
+        <div className="b b3 bg-red-400/20" style={{width:18,height:18,bottom:'15%',left:'22%'}} />
+        <div className="b b4 bg-red-300/25" style={{width:12,height:12,bottom:'8%',right:'22%'}} />
+        <div className="b b5 bg-red-400/15" style={{width:8,height:8,top:'55%',right:'38%'}} />
+        <div className="b b6 bg-red-300/20" style={{width:16,height:16,top:'35%',left:'42%'}} />
+        <div className="relative z-10 max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-red-800">
             Ready to Study in {data.name}?
           </h2>
-          <p className="text-red-100 text-xl mb-8">
+          <p className="text-red-600 text-xl mb-8">
             Talk to our expert counselors — 100% free consultation, no obligation.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-red-600 font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition text-lg"
+              className="bg-red-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-red-700 transition text-lg shadow-lg shadow-red-200"
             >
               Book Free Consultation
             </Link>
             <Link
               href="/universities"
-              className="border-2 border-white/60 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition text-lg"
+              className="border-2 border-red-600 text-red-600 font-bold px-8 py-4 rounded-xl hover:bg-red-600 hover:text-white transition text-lg"
             >
               Browse Universities
             </Link>
