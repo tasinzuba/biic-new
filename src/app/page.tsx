@@ -1,15 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import StoryCarousel from "@/components/ui/StoryCarousel";
+import DestinationCarousel from "@/components/ui/DestinationCarousel";
 
-const destinations = [
-  { name: "United Kingdom", slug: "uk", flag: "🇬🇧", universities: "130+", students: "600K+", image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" },
-  { name: "United States", slug: "usa", flag: "🇺🇸", universities: "4,000+", students: "1M+", image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&q=80" },
-  { name: "Canada", slug: "canada", flag: "🇨🇦", universities: "100+", students: "800K+", image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&q=80" },
-  { name: "Australia", slug: "australia", flag: "🇦🇺", universities: "40+", students: "700K+", image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80" },
-  { name: "Germany", slug: "germany", flag: "🇩🇪", universities: "400+", students: "400K+", image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80" },
-  { name: "Malaysia", slug: "malaysia", flag: "🇲🇾", universities: "50+", students: "150K+", image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80" },
-];
 
 const services = [
   { icon: "🎓", title: "University Admission", desc: "Personalised counselling for top university applications worldwide." },
@@ -135,25 +128,7 @@ export default function HomePage() {
             </div>
             <Link href="/study-in/uk" className="text-red-600 font-bold text-sm border-b-2 border-red-600 pb-0.5 hover:text-red-700 whitespace-nowrap self-end">View All →</Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {destinations.map((d) => (
-              <Link key={d.slug} href={`/study-in/${d.slug}`} className="di group relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-                <div className="relative h-56 overflow-hidden">
-                  <Image src={d.image} alt={d.name} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-red-950/90 via-red-900/30 to-transparent" />
-                  <div className="absolute top-4 left-4 text-4xl">{d.flag}</div>
-                  <div className="absolute top-4 right-4 bg-white/15 backdrop-blur-sm text-white text-[10px] font-black px-3 py-1.5 rounded-full border border-white/20">{d.universities} Unis</div>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h3 className="font-black text-white text-xl">Study in {d.name}</h3>
-                  <div className="flex items-center justify-between mt-1">
-                    <span className="text-red-200 text-xs">{d.students} Int&apos;l Students</span>
-                    <span className="bg-red-600 text-white text-xs font-black px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300">Explore →</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+          <DestinationCarousel />
         </div>
       </section>
 
