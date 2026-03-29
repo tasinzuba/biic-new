@@ -185,56 +185,56 @@ export const services = [
 export default function ServicesPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-red-900 text-white py-24 px-4">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&q=80"
-            alt="Services"
-            fill
-            className="object-cover"
-          />
-        </div>
-        {/* Decorative circles */}
-        <div className="absolute -right-20 -top-20 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
-        <div className="absolute -left-20 -bottom-20 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl" />
+      {/* Red 1px top bar */}
+      <div className="h-px bg-red-600 w-full" />
+
+      {/* Hero — light white gradient */}
+      <section
+        className="relative overflow-hidden py-24 px-4"
+        style={{ background: "linear-gradient(135deg,#ffffff 0%,#fff9f9 50%,#fff5f5 100%)" }}
+      >
+        {/* Decorative blobs */}
+        <div className="absolute -right-24 -top-24 w-96 h-96 bg-red-100/60 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -left-24 -bottom-24 w-72 h-72 bg-red-50/80 rounded-full blur-3xl pointer-events-none" />
+
         <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+          <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em] mb-4 inline-block">
             What We Offer
           </span>
-          <h1 className="text-4xl md:text-6xl font-bold mb-5 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-black text-red-900 mb-5 leading-tight">
             Everything You Need to<br />
-            <span className="text-red-400">Study Abroad</span>
+            <span className="text-red-600">Study Abroad</span>
           </h1>
-          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
+          <p className="text-gray-500 text-xl max-w-2xl mx-auto mb-10">
             From IELTS coaching to visa approval, we provide end-to-end support so you can focus on your dream.
           </p>
-        </div>
-      </section>
 
-      {/* Stats Bar */}
-      <section className="bg-red-600 text-white py-6">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            { value: "5,000+", label: "Students Placed" },
-            { value: "98%", label: "Visa Success Rate" },
-            { value: "15+", label: "Years Experience" },
-            { value: "50+", label: "Partner Universities" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl font-bold">{s.value}</div>
-              <div className="text-red-200 text-sm">{s.label}</div>
-            </div>
-          ))}
+          {/* Inline stats row */}
+          <div className="inline-grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-4 border border-red-100 bg-white/80 rounded-2xl px-8 py-5 shadow-sm">
+            {[
+              { value: "5,000+", label: "Students Placed" },
+              { value: "98%", label: "Visa Success Rate" },
+              { value: "15+", label: "Years Experience" },
+              { value: "50+", label: "Partner Universities" },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-2xl font-black text-red-700">{s.value}</div>
+                <div className="text-gray-500 text-xs font-black uppercase tracking-[0.15em] mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section
+        className="py-16 px-4"
+        style={{ background: "linear-gradient(135deg,#fff9f9 0%,#ffffff 50%,#fff5f5 100%)" }}
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Our Services</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Comprehensive Study Abroad Support</h2>
+            <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Our Services</span>
+            <h2 className="text-4xl font-black text-gray-900 mt-2">Comprehensive Study Abroad Support</h2>
             <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
               We offer a complete suite of services to guide you from initial planning all the way to settling in abroad.
             </p>
@@ -244,7 +244,7 @@ export default function ServicesPage() {
             {services.map((service) => (
               <div
                 key={service.slug}
-                className={`bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border ${service.borderColor} group flex flex-col`}
+                className="bg-white rounded-3xl overflow-hidden border border-red-100 shadow-sm hover:shadow-xl hover:border-red-200 transition-all duration-300 group flex flex-col"
               >
                 {/* Top image */}
                 <div className="relative h-44 overflow-hidden">
@@ -254,12 +254,12 @@ export default function ServicesPage() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-4 left-4 flex items-center gap-3">
                     <span className={`w-10 h-10 ${service.iconBg} rounded-xl flex items-center justify-center text-xl shadow`}>
                       {service.icon}
                     </span>
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${service.tagColor}`}>
+                    <span className={`text-xs font-black px-3 py-1 rounded-full ${service.tagColor}`}>
                       {service.tagline}
                     </span>
                   </div>
@@ -267,28 +267,28 @@ export default function ServicesPage() {
 
                 {/* Content */}
                 <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                  <h3 className="text-xl font-black text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-5 flex-1">{service.description}</p>
 
                   {/* Quick features */}
                   <ul className="space-y-2 mb-5">
                     {service.features.slice(0, 3).map((f) => (
                       <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
-                        <span className="text-red-600 font-bold mt-0.5 flex-shrink-0">✓</span>
+                        <span className="text-red-600 font-black mt-0.5 flex-shrink-0">✓</span>
                         {f}
                       </li>
                     ))}
                   </ul>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-2 mb-5 p-3 bg-gray-50 rounded-xl">
+                  <div className="grid grid-cols-3 gap-2 mb-5 p-3 bg-red-50/60 rounded-xl">
                     {[
                       { label: "Students", value: service.stats.students },
                       { label: "Success", value: service.stats.successRate },
                       { label: "Partners", value: service.stats.partners },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center">
-                        <div className="text-sm font-bold text-gray-800">{stat.value}</div>
+                        <div className="text-sm font-black text-gray-800">{stat.value}</div>
                         <div className="text-xs text-gray-400">{stat.label}</div>
                       </div>
                     ))}
@@ -296,7 +296,7 @@ export default function ServicesPage() {
 
                   <Link
                     href={`/services/${service.slug}`}
-                    className={`block text-center bg-gradient-to-r ${service.color} text-white font-bold py-3 rounded-xl hover:opacity-90 transition`}
+                    className="block text-center bg-red-600 hover:bg-red-700 text-white font-black py-3 rounded-xl hover:scale-[1.02] transition-all shadow-lg shadow-red-200"
                   >
                     Learn More →
                   </Link>
@@ -308,13 +308,16 @@ export default function ServicesPage() {
       </section>
 
       {/* Process Overview */}
-      <section className="py-16 px-4">
+      <section
+        className="py-16 px-4"
+        style={{ background: "linear-gradient(135deg,#ffffff 0%,#fff9f9 60%,#ffffff 100%)" }}
+      >
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">How We Work</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Our Simple 5-Step Process</h2>
+            <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">How We Work</span>
+            <h2 className="text-4xl font-black text-gray-900 mt-2">Our Simple 5-Step Process</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
             {[
               { num: "01", icon: "👤", label: "Profile Assessment" },
               { num: "02", icon: "🎯", label: "Plan Your Path" },
@@ -323,16 +326,13 @@ export default function ServicesPage() {
               { num: "05", icon: "✈️", label: "Fly & Succeed" },
             ].map((step, i) => (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg mb-3 relative">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-red-200 mb-3 relative">
                   {step.icon}
-                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-gray-900 text-white rounded-full flex items-center justify-center text-xs font-bold">
+                  <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-900 text-white rounded-full flex items-center justify-center text-xs font-black">
                     {step.num}
                   </span>
                 </div>
-                <p className="font-semibold text-gray-800 text-sm">{step.label}</p>
-                {i < 4 && (
-                  <div className="hidden md:block absolute top-8 left-0 w-full border-t-2 border-dashed border-gray-300 -z-10" />
-                )}
+                <p className="font-black text-gray-800 text-sm">{step.label}</p>
               </div>
             ))}
           </div>
@@ -340,22 +340,22 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-red-600 to-red-700 py-16 px-4">
+      <section className="bg-gradient-to-br from-red-950 via-red-900 to-red-800 py-16 px-4">
         <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Journey?</h2>
-          <p className="text-red-100 mb-6 text-lg">
+          <h2 className="text-3xl font-black mb-4">Ready to Start Your Journey?</h2>
+          <p className="text-red-200 mb-6 text-lg">
             Book a free consultation with our expert counselors today — no commitment required.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-red-600 font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition"
+              className="bg-white text-red-700 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition"
             >
               Book Free Consultation
             </Link>
             <Link
               href="/universities"
-              className="border-2 border-white/60 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition"
+              className="border-2 border-white/60 text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition"
             >
               Browse Universities
             </Link>

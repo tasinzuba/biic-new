@@ -44,6 +44,13 @@ const faqs = [
   { q: "What are your service fees?", a: "Our fees vary by service. University shortlisting consultations are free. Application processing, SOP writing, and visa support have structured fees. We discuss all costs transparently upfront." },
 ];
 
+const stats = [
+  { value: "Free", label: "Consultation" },
+  { value: "24h", label: "Response Time" },
+  { value: "98%", label: "Success Rate" },
+  { value: "5,000+", label: "Students Helped" },
+];
+
 export default function ContactPage() {
   const [form, setForm] = useState({
     name: "", email: "", phone: "", country: "", service: "", message: "",
@@ -65,8 +72,8 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-gradient-to-br from-gray-900 via-red-900 to-gray-900 text-white py-20 px-4 overflow-hidden">
+      {/* Hero — pure dark red gradient, no gray/blue */}
+      <section className="relative bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white py-20 px-4 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&q=80"
@@ -75,21 +82,24 @@ export default function ContactPage() {
             className="object-cover"
           />
         </div>
-        <div className="absolute -right-32 top-0 w-96 h-96 bg-red-600/20 rounded-full blur-3xl" />
-        <div className="absolute -left-32 bottom-0 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl" />
+        {/* Subtle red-only glows */}
+        <div className="absolute -right-32 top-0 w-96 h-96 bg-red-500/20 rounded-full blur-3xl" />
+        <div className="absolute -left-32 bottom-0 w-72 h-72 bg-red-700/20 rounded-full blur-3xl" />
+
         <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-5 uppercase tracking-widest">
+          <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em] inline-block bg-white/90 px-4 py-1.5 rounded-full mb-5">
             Get In Touch
           </span>
-          <h1 className="text-4xl md:text-6xl font-bold mb-5 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-black mb-5 leading-tight">
             Start Your Journey<br />
-            <span className="text-red-400">Today — For Free</span>
+            <span className="text-red-300">Today — For Free</span>
           </h1>
-          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
+          <p className="text-red-100 text-xl max-w-2xl mx-auto">
             Book a free consultation with our expert counselors. We'll assess your profile and guide you step by step.
           </p>
+
           {/* Quick contact links */}
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
+          <div className="flex flex-wrap justify-center gap-4 mt-8 mb-10">
             <a href="tel:+8809613820821" className="flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/30 px-5 py-2.5 rounded-xl text-sm font-semibold transition">
               📞 Call: +880 96138-20821
             </a>
@@ -97,45 +107,42 @@ export default function ContactPage() {
               ✉️ info@biicglobal.com
             </a>
           </div>
-        </div>
-      </section>
 
-      {/* Stats Bar */}
-      <section className="bg-red-600 text-white py-5">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {[
-            { value: "Free", label: "Consultation" },
-            { value: "24h", label: "Response Time" },
-            { value: "98%", label: "Success Rate" },
-            { value: "5,000+", label: "Students Helped" },
-          ].map((s) => (
-            <div key={s.label}>
-              <div className="text-2xl font-bold">{s.value}</div>
-              <div className="text-red-200 text-sm">{s.label}</div>
-            </div>
-          ))}
+          {/* Inline stats as white/transparent badges — replaces flat red stats bar */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {stats.map((s) => (
+              <div key={s.label} className="bg-white/10 backdrop-blur border border-white/20 rounded-2xl px-6 py-3 text-center min-w-[110px]">
+                <div className="text-2xl font-black text-white">{s.value}</div>
+                <div className="text-red-200 text-xs font-semibold uppercase tracking-wide mt-0.5">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Main Section: Form + Info */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section
+        className="py-16 px-4"
+        style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-10">
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Send Us a Message</h2>
+            <div className="bg-white rounded-3xl shadow-xl border border-red-100 p-8">
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Send a Message</span>
+              <h2 className="text-2xl font-black text-gray-900 mt-1 mb-2">We'd Love to Hear From You</h2>
               <p className="text-gray-500 mb-8">Fill in the form and we'll get back to you within 24 hours.</p>
 
               {submitted ? (
                 <div className="text-center py-12">
                   <div className="text-6xl mb-4">✅</div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+                  <h3 className="text-2xl font-black text-gray-900 mb-2">Message Sent!</h3>
                   <p className="text-gray-500 mb-6">
                     Thank you, <strong>{form.name}</strong>! We've received your message and will contact you within 24 hours.
                   </p>
                   <button
                     onClick={() => { setSubmitted(false); setForm({ name: "", email: "", phone: "", country: "", service: "", message: "" }); }}
-                    className="text-red-600 font-bold hover:underline"
+                    className="text-red-600 font-black hover:underline"
                   >
                     Send another message
                   </button>
@@ -228,10 +235,10 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className={`w-full py-4 rounded-xl font-bold text-white text-lg transition ${
+                    className={`w-full py-4 rounded-2xl font-black text-white text-lg transition hover:scale-[1.02] shadow-lg ${
                       loading
-                        ? "bg-gray-400 cursor-not-allowed"
-                        : "bg-red-600 hover:bg-red-700 shadow-lg hover:shadow-red-200"
+                        ? "bg-gray-400 cursor-not-allowed shadow-none"
+                        : "bg-red-600 hover:bg-red-700 shadow-red-200"
                     }`}
                   >
                     {loading ? (
@@ -261,7 +268,7 @@ export default function ContactPage() {
             {offices.map((office) => (
               <div
                 key={office.city}
-                className={`bg-white rounded-2xl shadow-sm border overflow-hidden ${office.primary ? "border-red-200" : "border-gray-100"}`}
+                className={`bg-white rounded-3xl shadow-sm border overflow-hidden ${office.primary ? "border-red-100" : "border-red-100"}`}
               >
                 {/* Map image */}
                 <div className="relative h-36 overflow-hidden">
@@ -269,9 +276,9 @@ export default function ContactPage() {
                   <div className="absolute inset-0 bg-black/40" />
                   <div className="absolute bottom-3 left-4 flex items-center gap-2">
                     <span className="text-2xl">{office.flag}</span>
-                    <span className="text-white font-bold text-sm">{office.city}</span>
+                    <span className="text-white font-black text-sm">{office.city}</span>
                     {office.primary && (
-                      <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">HEAD OFFICE</span>
+                      <span className="bg-red-600 text-white text-xs font-black px-2 py-0.5 rounded-full">HEAD OFFICE</span>
                     )}
                   </div>
                 </div>
@@ -296,20 +303,20 @@ export default function ContactPage() {
               </div>
             ))}
 
-            {/* Social / WhatsApp */}
-            <div className="bg-green-50 border border-green-200 rounded-2xl p-5">
+            {/* WhatsApp box — red brand colors, green button kept for WhatsApp */}
+            <div className="bg-red-50 border border-red-200 rounded-3xl p-5">
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-3xl">💬</span>
                 <div>
-                  <div className="font-bold text-gray-800">WhatsApp Us</div>
-                  <div className="text-green-700 text-sm">Fastest response — usually within an hour</div>
+                  <div className="font-black text-gray-800">WhatsApp Us</div>
+                  <div className="text-red-600 text-sm font-semibold">Fastest response — usually within an hour</div>
                 </div>
               </div>
               <a
                 href="https://wa.me/8809613820821"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition"
+                className="block text-center bg-green-500 hover:bg-green-600 text-white font-black py-3 rounded-2xl transition hover:scale-[1.02] shadow-lg shadow-green-200"
               >
                 Chat on WhatsApp
               </a>
@@ -319,9 +326,12 @@ export default function ContactPage() {
       </section>
 
       {/* Map Placeholder */}
-      <section className="px-4 pb-8">
+      <section
+        className="px-4 pb-10 pt-2"
+        style={{ background: "linear-gradient(180deg,#ffffff 0%,#fffbfb 50%,#fff7f7 100%)" }}
+      >
         <div className="max-w-6xl mx-auto">
-          <div className="bg-gray-200 rounded-3xl overflow-hidden h-72 relative">
+          <div className="rounded-3xl overflow-hidden h-72 relative border border-red-100 shadow-sm">
             <Image
               src="https://images.unsplash.com/photo-1592295293022-43cc394fc5e3?w=1600&q=80"
               alt="Office Map"
@@ -329,15 +339,15 @@ export default function ContactPage() {
               className="object-cover opacity-70"
             />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white rounded-2xl px-8 py-5 shadow-lg text-center">
+              <div className="bg-white rounded-3xl px-8 py-5 shadow-lg border border-red-100 text-center">
                 <div className="text-4xl mb-2">📍</div>
-                <div className="font-bold text-gray-800">BIIC Global Head Office</div>
+                <div className="font-black text-gray-900">BIIC Global Head Office</div>
                 <div className="text-gray-500 text-sm">Mirpur-2, Dhaka-1216, Bangladesh</div>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block mt-3 text-red-600 font-bold text-sm hover:underline"
+                  className="inline-block mt-3 text-red-600 font-black text-sm hover:underline"
                 >
                   Open in Google Maps →
                 </a>
@@ -347,24 +357,38 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* FAQ — warm rose gradient, details/summary accordions */}
+      <section
+        className="py-16 px-4"
+        style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+      >
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-10">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Got Questions?</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2">Frequently Asked Questions</h2>
+            <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Got Questions?</span>
+            <h2 className="text-4xl font-black text-gray-900 mt-2">Frequently Asked Questions</h2>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {faqs.map((item, i) => (
-              <div key={i} className="bg-white border border-gray-200 rounded-2xl p-6 hover:border-red-300 transition shadow-sm">
-                <div className="flex items-start gap-4">
-                  <span className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-sm flex-shrink-0 mt-0.5">Q</span>
-                  <div>
-                    <h3 className="font-bold text-gray-800 mb-2">{item.q}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">{item.a}</p>
+              <details
+                key={i}
+                className="group bg-white border border-red-100 hover:border-red-300 rounded-2xl shadow-sm overflow-hidden transition-all"
+              >
+                <summary className="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer list-none select-none">
+                  <div className="flex items-center gap-4">
+                    <span className="w-7 h-7 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-black text-xs flex-shrink-0">
+                      Q
+                    </span>
+                    <span className="font-black text-gray-900 text-sm md:text-base">{item.q}</span>
                   </div>
+                  {/* + / × icon */}
+                  <span className="text-red-400 font-black text-xl leading-none flex-shrink-0 transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-5 pt-0">
+                  <p className="text-gray-600 text-sm leading-relaxed pl-11">{item.a}</p>
                 </div>
-              </div>
+              </details>
             ))}
           </div>
         </div>

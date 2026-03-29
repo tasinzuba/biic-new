@@ -91,50 +91,60 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-end">
-        <Image
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"
-          alt="BIIC Global Team"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-red-950/90 via-red-900/40 to-transparent" />
-        {/* Red accent overlay on one side */}
-        <div className="absolute inset-0 bg-gradient-to-r from-red-900/60 to-transparent" />
-        <div className="relative z-10 max-w-6xl mx-auto px-6 w-full pb-14">
-          <span className="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
-            About BIIC Global
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight max-w-3xl">
+      <section
+        style={{ background: "linear-gradient(135deg,#ffffff 0%,#fff9f9 50%,#fff5f5 100%)" }}
+        className="relative pt-20 pb-16 px-4 overflow-hidden"
+      >
+        {/* Red accent top bar */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-red-700 via-red-500 to-red-700" />
+
+        {/* Decorative background blobs */}
+        <div className="absolute -top-32 -right-32 w-[500px] h-[500px] bg-red-100/40 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-[350px] h-[350px] bg-red-50/60 rounded-full blur-2xl pointer-events-none" />
+
+        <div className="relative max-w-6xl mx-auto">
+          {/* Section label */}
+          <div className="flex items-center gap-3 justify-center mb-6">
+            <div className="h-px w-10 bg-red-400" />
+            <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">About BIIC Global</span>
+            <div className="h-px w-10 bg-red-400" />
+          </div>
+
+          <h1 className="text-4xl md:text-6xl font-black text-red-900 mb-4 leading-tight text-center">
             Bangladesh's Most Trusted<br />
-            <span className="text-red-400">Study Abroad Consultancy</span>
+            <span className="text-red-600">Study Abroad Consultancy</span>
           </h1>
-          <p className="text-white/80 text-xl max-w-2xl">
+          <p className="text-gray-500 text-xl max-w-2xl mx-auto text-center mb-12">
             Since 2009, we have helped over 5,000 Bangladeshi students achieve their dreams of studying at top universities worldwide.
           </p>
-        </div>
-      </section>
 
-      {/* Stats */}
-      <section className="bg-red-600 text-white py-6">
-        <div className="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          {stats.map((s) => (
-            <div key={s.label} className="py-2">
-              <div className="text-3xl mb-1">{s.icon}</div>
-              <div className="text-3xl font-bold">{s.value}</div>
-              <div className="text-red-200 text-sm">{s.label}</div>
-            </div>
-          ))}
+          {/* Stats row */}
+          <div className="flex flex-wrap justify-center divide-x divide-red-100">
+            {stats.map((s, i) => (
+              <div key={s.label} className={`flex flex-col items-center px-10 py-4 ${i === 0 ? "" : ""}`}>
+                <div className="text-3xl mb-1">{s.icon}</div>
+                <div className="text-3xl font-black text-red-900">{s.value}</div>
+                <div className="text-gray-500 text-sm font-medium">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Our Story */}
-      <section className="py-16 px-4">
+      <section
+        style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+        className="py-20 px-4"
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
           <div>
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Our Story</span>
-            <h2 className="text-4xl font-bold text-red-900 mt-2 mb-6">
+            {/* Section label */}
+            <div className="flex items-center gap-3 mb-4">
+              <div className="h-px w-10 bg-red-400" />
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Our Story</span>
+              <div className="h-px w-10 bg-red-400" />
+            </div>
+            <h2 className="text-4xl font-black text-red-900 mb-6">
               15 Years of Transforming Lives Through Education
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -150,7 +160,7 @@ export default function AboutPage() {
             </div>
             <Link
               href="/contact"
-              className="inline-block mt-8 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-xl transition"
+              className="inline-block mt-8 bg-red-600 hover:bg-red-700 text-white font-black px-8 py-3.5 rounded-2xl transition-all hover:scale-105 shadow-lg shadow-red-200"
             >
               Start Your Journey Today
             </Link>
@@ -177,13 +187,23 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 px-4 bg-red-50">
+      <section
+        style={{ background: "linear-gradient(180deg,#ffffff 0%,#fffbfb 50%,#fff7f7 100%)" }}
+        className="py-20 px-4"
+      >
         <div className="max-w-6xl mx-auto">
+          {/* Section label */}
+          <div className="flex items-center gap-3 justify-center mb-10">
+            <div className="h-px w-10 bg-red-400" />
+            <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Purpose & Direction</span>
+            <div className="h-px w-10 bg-red-400" />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Mission */}
             <div className="bg-gradient-to-br from-red-600 to-red-700 text-white rounded-3xl p-10">
               <div className="text-5xl mb-5">🎯</div>
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+              <h3 className="text-2xl font-black mb-4">Our Mission</h3>
               <p className="text-red-100 leading-relaxed text-lg">
                 To empower Bangladeshi students with the knowledge, guidance, and support they need to access world-class international education — and to transform their futures through the power of global learning.
               </p>
@@ -192,7 +212,7 @@ export default function AboutPage() {
             {/* Vision */}
             <div className="bg-gradient-to-br from-red-900 to-red-800 text-white rounded-3xl p-10">
               <div className="text-5xl mb-5">🔭</div>
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+              <h3 className="text-2xl font-black mb-4">Our Vision</h3>
               <p className="text-red-100 leading-relaxed text-lg">
                 To become the most trusted bridge between Bangladeshi talent and global opportunity — placing 10,000+ students in the world's best universities by 2030, and building a generation of globally-minded Bangladeshi leaders.
               </p>
@@ -202,9 +222,12 @@ export default function AboutPage() {
           {/* Values */}
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {values.map((v) => (
-              <div key={v.title} className="bg-white rounded-2xl p-6 border border-red-100 shadow-sm hover:shadow-md hover:border-red-200 transition text-center">
+              <div
+                key={v.title}
+                className="bg-white rounded-2xl p-6 border border-red-100 shadow-sm hover:shadow-xl hover:border-red-200 hover:scale-[1.02] transition-all text-center"
+              >
                 <div className="text-4xl mb-3">{v.icon}</div>
-                <h4 className="font-bold text-red-800 text-lg mb-2">{v.title}</h4>
+                <h4 className="font-black text-red-800 text-lg mb-2">{v.title}</h4>
                 <p className="text-gray-500 text-sm leading-relaxed">{v.desc}</p>
               </div>
             ))}
@@ -213,11 +236,19 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-16 px-4">
+      <section
+        style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+        className="py-20 px-4"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">The People Behind BIIC</span>
-            <h2 className="text-4xl font-bold text-red-900 mt-2">Meet Our Expert Team</h2>
+            {/* Section label */}
+            <div className="flex items-center gap-3 justify-center mb-4">
+              <div className="h-px w-10 bg-red-400" />
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">The People Behind BIIC</span>
+              <div className="h-px w-10 bg-red-400" />
+            </div>
+            <h2 className="text-4xl font-black text-red-900">Meet Our Expert Team</h2>
             <p className="text-gray-500 mt-3 max-w-2xl mx-auto">
               Our counselors are not just professionals — many are former international students who understand exactly what you are going through.
             </p>
@@ -225,7 +256,10 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map((member) => (
-              <div key={member.name} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-red-100">
+              <div
+                key={member.name}
+                className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-red-200 hover:scale-[1.02] transition-all border border-red-100"
+              >
                 {/* Photo */}
                 <div className="relative h-60 overflow-hidden">
                   <Image
@@ -243,7 +277,7 @@ export default function AboutPage() {
                 </div>
                 {/* Info */}
                 <div className="p-5">
-                  <h3 className="font-bold text-red-900 text-lg">{member.name}</h3>
+                  <h3 className="font-black text-red-900 text-lg">{member.name}</h3>
                   <p className="text-red-600 text-sm font-semibold mb-3">{member.title}</p>
                   <p className="text-gray-500 text-xs leading-relaxed">{member.bio}</p>
                 </div>
@@ -254,11 +288,19 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-16 px-4 bg-red-50">
+      <section
+        style={{ background: "linear-gradient(180deg,#ffffff 0%,#fffbfb 50%,#fff7f7 100%)" }}
+        className="py-20 px-4"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Our Journey</span>
-            <h2 className="text-4xl font-bold text-red-900 mt-2">15 Years of Milestones</h2>
+            {/* Section label */}
+            <div className="flex items-center gap-3 justify-center mb-4">
+              <div className="h-px w-10 bg-red-400" />
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Our Journey</span>
+              <div className="h-px w-10 bg-red-400" />
+            </div>
+            <h2 className="text-4xl font-black text-red-900">15 Years of Milestones</h2>
           </div>
           <div className="relative">
             <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-red-200 hidden md:block" />
@@ -266,11 +308,11 @@ export default function AboutPage() {
               {milestones.map((m, i) => (
                 <div key={i} className={`relative flex gap-6 items-center ${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                   {/* Content */}
-                  <div className="flex-1 bg-white rounded-2xl p-5 shadow-sm border border-red-100 hover:border-red-200 transition hover:shadow-md">
-                    <div className="font-bold text-red-800">{m.event}</div>
+                  <div className="flex-1 bg-white rounded-2xl p-5 shadow-sm border border-red-100 hover:border-red-200 hover:shadow-xl hover:scale-[1.02] transition-all">
+                    <div className="font-black text-red-800">{m.event}</div>
                   </div>
                   {/* Year bubble */}
-                  <div className="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-sm z-10 flex-shrink-0 shadow-lg text-center leading-tight">
+                  <div className="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center font-black text-sm z-10 flex-shrink-0 shadow-lg text-center leading-tight">
                     {m.year}
                   </div>
                   <div className="flex-1 hidden md:block" />
@@ -282,18 +324,29 @@ export default function AboutPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-16 px-4">
+      <section
+        style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+        className="py-20 px-4"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-red-600 font-semibold text-sm uppercase tracking-widest">Why BIIC Global</span>
-            <h2 className="text-4xl font-bold text-red-900 mt-2">Why 5,000+ Students Trust Us</h2>
+            {/* Section label */}
+            <div className="flex items-center gap-3 justify-center mb-4">
+              <div className="h-px w-10 bg-red-400" />
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Why BIIC Global</span>
+              <div className="h-px w-10 bg-red-400" />
+            </div>
+            <h2 className="text-4xl font-black text-red-900">Why 5,000+ Students Trust Us</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyChoose.map((item) => (
-              <div key={item.title} className="flex items-start gap-4 bg-white border border-red-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:border-red-200 transition">
+              <div
+                key={item.title}
+                className="flex items-start gap-4 bg-white border border-red-100 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:border-red-200 hover:scale-[1.02] transition-all"
+              >
                 <span className="text-3xl flex-shrink-0">{item.icon}</span>
                 <div>
-                  <h3 className="font-bold text-red-800 text-lg mb-1">{item.title}</h3>
+                  <h3 className="font-black text-red-800 text-lg mb-1">{item.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </div>
@@ -303,29 +356,35 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-24 px-4 overflow-hidden">
-        <Image
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"
-          alt="Team"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-red-700/92" />
+      <section className="relative py-24 px-4 overflow-hidden bg-gradient-to-br from-red-950 via-red-900 to-red-800">
+        <div className="absolute inset-0 opacity-10">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80"
+            alt="Team"
+            fill
+            className="object-cover"
+          />
+        </div>
         <div className="relative z-10 max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Join the BIIC Family</h2>
+          <div className="flex items-center gap-3 justify-center mb-6">
+            <div className="h-px w-10 bg-red-400" />
+            <span className="text-red-300 font-black text-xs uppercase tracking-[0.2em]">Get Started</span>
+            <div className="h-px w-10 bg-red-400" />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">Join the BIIC Family</h2>
           <p className="text-red-100 text-xl mb-8">
             5,000+ students have trusted us with their futures. You're next.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/contact"
-              className="bg-white text-red-600 font-bold px-8 py-4 rounded-xl hover:bg-red-50 transition text-lg"
+              className="bg-white text-red-600 font-black px-8 py-3.5 rounded-2xl hover:bg-red-50 transition-all hover:scale-105 shadow-lg text-lg"
             >
               Book Free Consultation
             </Link>
             <Link
               href="/universities"
-              className="border-2 border-white/60 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/10 transition text-lg"
+              className="border-2 border-white/60 text-white font-bold px-8 py-3.5 rounded-2xl hover:bg-white/10 transition text-lg"
             >
               Browse Universities
             </Link>

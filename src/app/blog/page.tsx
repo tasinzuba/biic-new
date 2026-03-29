@@ -114,7 +114,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white py-20 px-4 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-red-950 via-red-900 to-red-800 text-white py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
             src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80"
@@ -124,13 +124,13 @@ export default function BlogPage() {
           />
         </div>
         <div className="relative max-w-4xl mx-auto text-center">
-          <span className="inline-block bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
+          <span className="inline-block bg-red-600 text-white text-xs font-black px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
             Study Abroad Blog
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          <h1 className="text-4xl md:text-5xl font-black mb-4">
             Tips, Guides & News
           </h1>
-          <p className="text-gray-300 text-xl max-w-2xl mx-auto">
+          <p className="text-red-100 text-xl max-w-2xl mx-auto">
             Expert advice on studying abroad — visas, scholarships, IELTS, university applications and more.
           </p>
         </div>
@@ -138,14 +138,17 @@ export default function BlogPage() {
 
       {/* Featured Post */}
       {featured && (
-        <section className="py-12 px-4 bg-gray-50">
+        <section
+          className="py-12 px-4"
+          style={{ background: "linear-gradient(135deg,#fff7f7 0%,#fef2f2 40%,#fff1f0 70%,#fafafa 100%)" }}
+        >
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-2 mb-6">
               <div className="h-0.5 bg-red-600 w-8" />
-              <span className="text-red-600 font-bold uppercase tracking-wider text-sm">Featured Article</span>
+              <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">Featured Article</span>
             </div>
             <Link href={`/blog/${featured.slug}`} className="group block">
-              <div className="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
+              <div className="grid grid-cols-1 lg:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-100">
                 <div className="relative h-72 lg:h-auto min-h-[320px] overflow-hidden">
                   <Image
                     src={featured.image}
@@ -155,7 +158,7 @@ export default function BlogPage() {
                     priority
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                    <span className="bg-red-600 text-white text-xs font-black px-3 py-1.5 rounded-full uppercase tracking-wider">
                       {featured.category}
                     </span>
                   </div>
@@ -166,7 +169,7 @@ export default function BlogPage() {
                     <span>•</span>
                     <span>{featured.readTime}</span>
                   </div>
-                  <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:text-red-600 transition leading-tight">
+                  <h2 className="text-2xl lg:text-3xl font-black text-gray-900 mb-4 group-hover:text-red-600 transition leading-tight">
                     {featured.title}
                   </h2>
                   <p className="text-gray-500 leading-relaxed mb-6">{featured.excerpt}</p>
@@ -179,7 +182,7 @@ export default function BlogPage() {
                       <div className="text-xs text-gray-400">BIIC Expert</div>
                     </div>
                     <div className="ml-auto">
-                      <span className="text-red-600 font-bold text-sm group-hover:underline">Read Full Article →</span>
+                      <span className="text-red-600 font-black text-sm group-hover:underline">Read Full Article →</span>
                     </div>
                   </div>
                 </div>
@@ -193,18 +196,18 @@ export default function BlogPage() {
       <BlogFilters posts={rest} />
 
       {/* Newsletter */}
-      <section className="bg-gradient-to-r from-red-600 to-red-700 py-16 px-4">
+      <section className="bg-gradient-to-br from-red-950 via-red-900 to-red-800 py-16 px-4">
         <div className="max-w-2xl mx-auto text-center text-white">
           <div className="text-4xl mb-4">📧</div>
-          <h2 className="text-3xl font-bold mb-3">Get Study Abroad Tips in Your Inbox</h2>
+          <h2 className="text-3xl font-black mb-3">Get Study Abroad Tips in Your Inbox</h2>
           <p className="text-red-100 mb-6">Join 5,000+ students who get our weekly newsletter on scholarships, visa tips and more.</p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-5 py-3 rounded-xl text-gray-800 text-sm outline-none focus:ring-2 focus:ring-white/50"
+              className="flex-1 px-5 py-3 rounded-2xl text-gray-800 text-sm outline-none focus:ring-2 focus:ring-white/50"
             />
-            <button className="bg-white text-red-600 font-bold px-6 py-3 rounded-xl hover:bg-red-50 transition whitespace-nowrap">
+            <button className="bg-white text-red-600 font-black px-6 py-3 rounded-2xl hover:bg-red-50 hover:scale-105 transition-all whitespace-nowrap">
               Subscribe
             </button>
           </div>
