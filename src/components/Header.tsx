@@ -13,7 +13,10 @@ const topBarInfo = {
   ],
 };
 
-const navLinks = [
+type NavChild = { label: string; href: string; sub?: string };
+type NavLink = { label: string; href?: string; children?: NavChild[] };
+
+const navLinks: NavLink[] = [
   {
     label: "STUDY DESTINATION",
     children: [
@@ -39,12 +42,20 @@ const navLinks = [
     label: "RESOURCES",
     children: [
       { label: "Blog", href: "/blog" },
+      { label: "Events", href: "/events" },
       { label: "News", href: "/blog/news" },
       { label: "Student Guide", href: "/blog/guide" },
     ],
   },
   { label: "ABOUT US", href: "/about" },
-  { label: "OUR OFFICES", href: "/offices" },
+  {
+    label: "OUR OFFICES",
+    children: [
+      { label: "Dhaka Office", href: "/offices/dhaka" },
+      { label: "Chattogram Office", href: "/offices/chattogram" },
+      { label: "Sylhet Office", href: "/offices/sylhet" },
+    ],
+  },
 ];
 
 export default function Header() {
@@ -112,14 +123,15 @@ export default function Header() {
                     </svg>
                   </button>
                   {openDropdown === link.label && (
-                    <div className="absolute top-full left-0 bg-white shadow-xl rounded-lg py-2 w-52 border-t-2 border-red-600 z-50">
+                    <div className={`absolute top-full left-0 bg-white shadow-xl rounded-lg py-2 border-t-2 border-red-600 z-50 ${link.children.some((c) => c.sub) ? "w-72" : "w-52"}`}>
                       {link.children.map((child) => (
                         <Link
                           key={child.href}
                           href={child.href}
-                          className="block px-4 py-2.5 text-gray-700 hover:bg-red-50 hover:text-red-600 text-sm transition"
+                          className="block px-4 py-2.5 text-gray-700 hover:bg-red-50 hover:text-red-600 transition group"
                         >
-                          {child.label}
+                          <div className="text-sm font-semibold group-hover:text-red-600">{child.label}</div>
+                          {child.sub && <div className="text-xs text-gray-400 mt-0.5 leading-snug">{child.sub}</div>}
                         </Link>
                       ))}
                     </div>
@@ -127,8 +139,8 @@ export default function Header() {
                 </div>
               ) : (
                 <Link
-                  key={link.href}
-                  href={link.href!}
+                  key={link.label}
+                  href={link.href ?? "/"}
                   className="px-3 py-2 text-gray-700 hover:text-red-600 font-semibold text-sm transition whitespace-nowrap"
                 >
                   {link.label}
@@ -187,8 +199,8 @@ export default function Header() {
               </div>
             ) : (
               <Link
-                key={link.href}
-                href={link.href!}
+                key={link.label}
+                href={link.href ?? "/"}
                 className="block py-3 text-gray-700 font-semibold border-b border-gray-100 hover:text-red-600 transition"
                 onClick={() => setMobileOpen(false)}
               >

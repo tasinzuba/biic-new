@@ -2,6 +2,7 @@ import DestinationCarousel from "@/components/ui/DestinationCarousel";
 import StoryCarousel from "@/components/ui/StoryCarousel";
 import Image from "next/image";
 import Link from "next/link";
+import Flag from "@/components/Flag";
 
 const services = [
   {
@@ -67,7 +68,7 @@ const testimonials = [
   {
     name: "Tanvir Ahmed",
     uni: "Univ. of Manchester",
-    flag: "🇬🇧",
+    flag: "GB",
     course: "MSc Data Science",
     text: "BIIC made my UK dream a reality. From IELTS to visa — everything handled perfectly. I can't thank them enough!",
     rating: 5,
@@ -75,7 +76,7 @@ const testimonials = [
   {
     name: "Nusrat Jahan",
     uni: "University of Toronto",
-    flag: "🇨🇦",
+    flag: "CA",
     course: "MBA",
     text: "Got a 70% scholarship thanks to BIIC. The counselors are so knowledgeable and always available to help.",
     rating: 5,
@@ -83,7 +84,7 @@ const testimonials = [
   {
     name: "Rakib Hossain",
     uni: "Monash University",
-    flag: "🇦🇺",
+    flag: "AU",
     course: "Masters in Engineering",
     text: "The whole process was smooth and stress-free. Incredibly professional team with real expertise.",
     rating: 5,
@@ -91,7 +92,7 @@ const testimonials = [
   {
     name: "Fatema Begum",
     uni: "TU Berlin",
-    flag: "🇩🇪",
+    flag: "DE",
     course: "MSc Computer Science",
     text: "Studying in Germany was my dream. BIIC guided me through every step — visa, admission, accommodation.",
     rating: 5,
@@ -99,7 +100,7 @@ const testimonials = [
   {
     name: "Shahidul Islam",
     uni: "Birmingham City Univ.",
-    flag: "🇬🇧",
+    flag: "GB",
     course: "BSc Business",
     text: "From zero knowledge to landing at UK university — BIIC handled everything. 100% recommended!",
     rating: 5,
@@ -107,7 +108,7 @@ const testimonials = [
   {
     name: "Rima Akter",
     uni: "Curtin University",
-    flag: "🇦🇺",
+    flag: "AU",
     course: "Masters in Accounting",
     text: "BIIC's scholarship guidance was exceptional. I got a partial scholarship I didn't even know I was eligible for.",
     rating: 5,
@@ -988,24 +989,27 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
+                slug: "uk-university-fair-2026",
                 date: "25 Mar",
                 month: "2026",
                 title: "UK University Fair 2026",
                 type: "Free Event",
                 location: "Dhaka, Bangladesh",
                 desc: "Meet representatives from 30+ UK universities. Get direct admission offers on the spot.",
-                badge: "🇬🇧 UK",
+                badge: "UK", flagCode: "GB",
               },
               {
+                slug: "canada-study-seminar-2026",
                 date: "10 Apr",
                 month: "2026",
                 title: "Canada Study Seminar",
                 type: "Free Seminar",
                 location: "Online (Zoom)",
                 desc: "Learn about Canadian student visa, scholarships and top universities with our experts.",
-                badge: "🇨🇦 Canada",
+                badge: "Canada", flagCode: "CA",
               },
               {
+                slug: "ielts-strategy-workshop-2026",
                 date: "20 Apr",
                 month: "2026",
                 title: "IELTS Strategy Workshop",
@@ -1033,7 +1037,8 @@ export default function HomePage() {
                   </div>
                   <div className="p-5 flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="bg-red-50 text-red-600 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wide">
+                      <span className="bg-red-50 text-red-600 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
+                        {"flagCode" in ev && <Flag code={(ev as {flagCode:string}).flagCode} size="0.9em" />}
                         {ev.badge}
                       </span>
                       <span className="text-gray-400 text-[10px] font-bold uppercase">
@@ -1051,12 +1056,18 @@ export default function HomePage() {
                     </p>
                   </div>
                 </div>
-                <div className="px-5 pb-4 pt-3 border-t border-red-50">
+                <div className="px-5 pb-4 pt-3 border-t border-red-50 flex items-center justify-between">
                   <Link
-                    href="/contact"
+                    href={`/events/${ev.slug}`}
                     className="text-red-600 text-xs font-black hover:text-red-700 transition-colors"
                   >
-                    Register Free →
+                    View Details →
+                  </Link>
+                  <Link
+                    href="/contact"
+                    className="bg-red-600 hover:bg-red-700 text-white text-xs font-black px-3 py-1.5 rounded-lg transition-colors"
+                  >
+                    Register Free
                   </Link>
                 </div>
               </div>
@@ -1209,12 +1220,12 @@ export default function HomePage() {
             {[
               {
                 title: "How I Got Into University of Manchester",
-                student: "Tanvir Ahmed · MSc Data Science · 🇬🇧 UK",
+                student: "Tanvir Ahmed · MSc Data Science", flagCode: "GB", dest: "UK",
                 id: "dQw4w9WgXcQ",
               },
               {
                 title: "My Scholarship Journey to Canada",
-                student: "Nusrat Jahan · MBA · 🇨🇦 Canada",
+                student: "Nusrat Jahan · MBA", flagCode: "CA", dest: "Canada",
                 id: "dQw4w9WgXcQ",
               },
             ].map((v) => (
@@ -1236,7 +1247,9 @@ export default function HomePage() {
                   <h3 className="font-black text-red-900 text-xs leading-snug mb-0.5 line-clamp-2">
                     {v.title}
                   </h3>
-                  <p className="text-gray-400 text-[10px]">{v.student}</p>
+                  <p className="text-gray-400 text-[10px] flex items-center gap-1">
+                    {v.student} {"flagCode" in v && <Flag code={(v as {flagCode:string}).flagCode} size="0.9em" />} {"dest" in v && (v as {dest:string}).dest}
+                  </p>
                 </div>
               </div>
             ))}
@@ -1319,7 +1332,7 @@ export default function HomePage() {
                       <div
                         className={`font-black text-sm ${i % 3 === 1 ? "text-white" : "text-red-900"}`}
                       >
-                        {t.name} {t.flag}
+                        {t.name} <Flag code={t.flag} size="1em" />
                       </div>
                       <div
                         className={`text-xs ${i % 3 === 1 ? "text-red-200" : "text-gray-400"}`}
@@ -1531,12 +1544,12 @@ export default function HomePage() {
                     </label>
                     <select className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-700 outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100 transition-all bg-white">
                       <option value="">— Select Country —</option>
-                      <option>United Kingdom 🇬🇧</option>
-                      <option>United States 🇺🇸</option>
-                      <option>Canada 🇨🇦</option>
-                      <option>Australia 🇦🇺</option>
-                      <option>Germany 🇩🇪</option>
-                      <option>Malaysia 🇲🇾</option>
+                      <option>United Kingdom</option>
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>Australia</option>
+                      <option>Germany</option>
+                      <option>Malaysia</option>
                     </select>
                   </div>
                 </div>

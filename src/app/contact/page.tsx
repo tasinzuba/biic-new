@@ -8,21 +8,31 @@ const offices = [
   {
     city: "Dhaka (Head Office)",
     flag: "🇧🇩",
-    address: "House 12, Road 5, Block B, Section 10, Mirpur-2, Dhaka-1216",
+    address: "III/A, Zeenat Center 2, Road 07, Sector 04, Rajlokkhi, Uttara, Dhaka",
     phone: "+880 96138-20821",
     email: "info@biicglobal.com",
-    hours: "Sunday – Thursday: 10AM – 6PM\nFriday: 10AM – 1PM\nSaturday: Closed",
+    hours: "Saturday – Thursday: 10AM – 7PM\nFriday: 2PM – 6PM",
     mapImage: "https://images.unsplash.com/photo-1592295293022-43cc394fc5e3?w=600&q=80",
     primary: true,
   },
   {
-    city: "Chittagong",
+    city: "Chattogram",
     flag: "🇧🇩",
-    address: "GEC Circle, Chittagong-4000",
-    phone: "+880 96138-20822",
-    email: "ctg@biicglobal.com",
-    hours: "Sunday – Thursday: 10AM – 6PM",
+    address: "Aerial Legend (4th Floor), CDA Avenue, beside O R Nizam Rd 7, East Nasirabad, GEC Circle, Chattogram",
+    phone: "+880 96138-20821",
+    email: "chattogram@biicglobal.com",
+    hours: "Saturday – Thursday: 10AM – 7PM\nFriday: 2PM – 6PM",
     mapImage: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?w=600&q=80",
+    primary: false,
+  },
+  {
+    city: "Sylhet",
+    flag: "🇧🇩",
+    address: "4203, Arcadia Centre, Lift 4th Floor, Dorshon Dewri, Amberkhana, Sylhet-3100",
+    phone: "+880 96138-20821",
+    email: "sylhet@biicglobal.com",
+    hours: "Saturday – Thursday: 10AM – 7PM\nFriday: 2PM – 6PM",
+    mapImage: "https://images.unsplash.com/photo-1605493725784-89e139a2ce86?w=600&q=80",
     primary: false,
   },
 ];
@@ -342,7 +352,7 @@ export default function ContactPage() {
               <div className="bg-white rounded-3xl px-8 py-5 shadow-lg border border-red-100 text-center">
                 <div className="text-4xl mb-2">📍</div>
                 <div className="font-black text-gray-900">BIIC Global Head Office</div>
-                <div className="text-gray-500 text-sm">Mirpur-2, Dhaka-1216, Bangladesh</div>
+                <div className="text-gray-500 text-sm">Zeenat Center 2, Uttara, Dhaka</div>
                 <a
                   href="https://maps.google.com"
                   target="_blank"
