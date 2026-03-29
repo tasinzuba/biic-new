@@ -1,6 +1,3 @@
-"use client";
-
-import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 const images = [
@@ -14,64 +11,34 @@ const images = [
   { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80", alt: "Student 8" },
 ];
 
-const perView = 4;
+const items = [...images, ...images];
 
 export default function StoryCarousel() {
-  const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState(false);
-  const maxIndex = images.length - perView;
-
-  const next = useCallback(() => setCurrent((c) => (c >= maxIndex ? 0 : c + 1)), [maxIndex]);
-  const prev = () => setCurrent((c) => (c <= 0 ? maxIndex : c - 1));
-
-  useEffect(() => {
-    if (hovered) return;
-    const t = setInterval(next, 2800);
-    return () => clearInterval(t);
-  }, [hovered, next]);
-
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <div className="overflow-hidden rounded-3xl">
-        <div
-          className="flex gap-4 transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(calc(-${current * (100 / perView)}% - ${current * (16 / perView)}px))` }}
-        >
-          {images.map((img, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 relative overflow-hidden rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              style={{ width: `calc(${100 / perView}% - ${(16 * (perView - 1)) / perView}px)` }}
-            >
-              <div className="relative h-56">
-                <Image src={img.src} alt={img.alt} fill className="object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-red-900/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-              </div>
+    <>
+      <style>{`
+        @keyframes storyScroll { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+        .story-track { animation: storyScroll 24s linear infinite; display:flex; gap:12px; width:max-content; }
+        .story-wrap:hover .story-track { animation-play-state:paused; }
+        .story-img { flex-shrink:0; width:280px; height:220px; border-radius:16px; overflow:hidden; position:relative; transition:transform .3s ease, box-shadow .3s ease; }
+        .story-img:hover { transform:translateY(-6px) scale(1.03); box-shadow:0 20px 40px -10px rgba(185,28,28,.3); }
+      `}</style>
+      <div
+        className="overflow-hidden story-wrap py-2"
+        style={{
+          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        }}
+      >
+        <div className="story-track">
+          {items.map((img, i) => (
+            <div key={i} className="story-img">
+              <Image src={img.src} alt={img.alt} fill className="object-cover object-top" />
+              <div className="absolute inset-0 bg-gradient-to-t from-red-900/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
         </div>
       </div>
-
-      {/* Controls */}
-      <div className="flex items-center justify-between mt-6">
-        <div className="flex gap-2">
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrent(i)}
-              className={`rounded-full transition-all duration-300 ${i === current ? "w-7 h-2.5 bg-red-600" : "w-2.5 h-2.5 bg-red-200"}`}
-            />
-          ))}
-        </div>
-        <div className="flex gap-2">
-          <button onClick={prev} className="w-9 h-9 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white rounded-xl font-black transition-all text-lg flex items-center justify-center">‹</button>
-          <button onClick={next} className="w-9 h-9 bg-red-600 hover:bg-red-700 text-white rounded-xl font-black transition-all text-lg flex items-center justify-center">›</button>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
