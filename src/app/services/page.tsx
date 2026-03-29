@@ -1,17 +1,37 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import {
+  FaGraduationCap, FaPassport, FaPenToSquare, FaAward,
+  FaHouseChimney, FaCompass, FaCircleUser, FaBullseye,
+  FaFileLines, FaRocket, FaPlane,
+} from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
 export const metadata: Metadata = {
   title: "Our Services",
   description: "Comprehensive study abroad services: university admission, visa assistance, IELTS prep, scholarships and more.",
 };
 
-export const services = [
+export const services: {
+  slug: string;
+  Icon: IconType;
+  iconBg: string;
+  iconColor: string;
+  title: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  steps: { num: string; title: string; desc: string }[];
+  stats: { students: string; successRate: string; partners: string };
+  image: string;
+  tagColor: string;
+}[] = [
   {
     slug: "university-admission",
-    icon: "🎓",
+    Icon: FaGraduationCap,
     iconBg: "bg-blue-100",
+    iconColor: "text-blue-600",
     title: "University Admission",
     tagline: "Get into your dream university",
     description:
@@ -33,14 +53,13 @@ export const services = [
     ],
     stats: { students: "5,000+", successRate: "95%", partners: "50+" },
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80",
-    color: "from-blue-600 to-blue-700",
-    borderColor: "border-blue-200",
     tagColor: "bg-blue-100 text-blue-700",
   },
   {
     slug: "visa-assistance",
-    icon: "✈️",
+    Icon: FaPassport,
     iconBg: "bg-red-100",
+    iconColor: "text-red-600",
     title: "Visa Assistance",
     tagline: "98% visa approval rate",
     description:
@@ -62,14 +81,13 @@ export const services = [
     ],
     stats: { students: "3,000+", successRate: "98%", partners: "40+" },
     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80",
-    color: "from-red-600 to-red-700",
-    borderColor: "border-red-200",
     tagColor: "bg-red-100 text-red-700",
   },
   {
     slug: "ielts-preparation",
-    icon: "📝",
+    Icon: FaPenToSquare,
     iconBg: "bg-green-100",
+    iconColor: "text-green-600",
     title: "IELTS Preparation",
     tagline: "Expert coaching for Band 7+",
     description:
@@ -91,14 +109,13 @@ export const services = [
     ],
     stats: { students: "2,000+", successRate: "90%", partners: "20+" },
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b6f57?w=800&q=80",
-    color: "from-green-600 to-green-700",
-    borderColor: "border-green-200",
     tagColor: "bg-green-100 text-green-700",
   },
   {
     slug: "scholarship",
-    icon: "💰",
+    Icon: FaAward,
     iconBg: "bg-yellow-100",
+    iconColor: "text-yellow-600",
     title: "Scholarship Guidance",
     tagline: "Find funding for your education",
     description:
@@ -120,14 +137,13 @@ export const services = [
     ],
     stats: { students: "800+", successRate: "70%", partners: "30+" },
     image: "https://images.unsplash.com/photo-1459499362902-55a20553e082?w=800&q=80",
-    color: "from-yellow-500 to-yellow-600",
-    borderColor: "border-yellow-200",
     tagColor: "bg-yellow-100 text-yellow-700",
   },
   {
     slug: "accommodation",
-    icon: "🏠",
+    Icon: FaHouseChimney,
     iconBg: "bg-purple-100",
+    iconColor: "text-purple-600",
     title: "Accommodation Help",
     tagline: "Find your home away from home",
     description:
@@ -148,14 +164,13 @@ export const services = [
     ],
     stats: { students: "1,500+", successRate: "99%", partners: "25+" },
     image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80",
-    color: "from-purple-600 to-purple-700",
-    borderColor: "border-purple-200",
     tagColor: "bg-purple-100 text-purple-700",
   },
   {
     slug: "pre-departure",
-    icon: "🗺️",
+    Icon: FaCompass,
     iconBg: "bg-orange-100",
+    iconColor: "text-orange-600",
     title: "Pre-Departure Briefing",
     tagline: "Be fully prepared before you fly",
     description:
@@ -176,10 +191,16 @@ export const services = [
     ],
     stats: { students: "5,000+", successRate: "100%", partners: "15+" },
     image: "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80",
-    color: "from-orange-500 to-orange-600",
-    borderColor: "border-orange-200",
     tagColor: "bg-orange-100 text-orange-700",
   },
+];
+
+const processSteps = [
+  { num: "01", Icon: FaCircleUser, label: "Profile Assessment" },
+  { num: "02", Icon: FaBullseye,   label: "Plan Your Path" },
+  { num: "03", Icon: FaFileLines,  label: "Prepare Documents" },
+  { num: "04", Icon: FaRocket,     label: "Apply & Track" },
+  { num: "05", Icon: FaPlane,      label: "Fly & Succeed" },
 ];
 
 export default function ServicesPage() {
@@ -193,7 +214,6 @@ export default function ServicesPage() {
         className="relative overflow-hidden py-24 px-4"
         style={{ background: "linear-gradient(135deg,#ffffff 0%,#fff9f9 50%,#fff5f5 100%)" }}
       >
-        {/* Decorative blobs */}
         <div className="absolute -right-24 -top-24 w-96 h-96 bg-red-100/60 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -left-24 -bottom-24 w-72 h-72 bg-red-50/80 rounded-full blur-3xl pointer-events-none" />
 
@@ -208,14 +228,12 @@ export default function ServicesPage() {
           <p className="text-gray-500 text-xl max-w-2xl mx-auto mb-10">
             From IELTS coaching to visa approval, we provide end-to-end support so you can focus on your dream.
           </p>
-
-          {/* Inline stats row */}
           <div className="inline-grid grid-cols-2 md:grid-cols-4 gap-x-10 gap-y-4 border border-red-100 bg-white/80 rounded-2xl px-8 py-5 shadow-sm">
             {[
               { value: "5,000+", label: "Students Placed" },
-              { value: "98%", label: "Visa Success Rate" },
-              { value: "15+", label: "Years Experience" },
-              { value: "50+", label: "Partner Universities" },
+              { value: "98%",    label: "Visa Success Rate" },
+              { value: "15+",    label: "Years Experience" },
+              { value: "50+",    label: "Partner Universities" },
             ].map((s) => (
               <div key={s.label} className="text-center">
                 <div className="text-2xl font-black text-red-700">{s.value}</div>
@@ -256,8 +274,8 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-4 left-4 flex items-center gap-3">
-                    <span className={`w-10 h-10 ${service.iconBg} rounded-xl flex items-center justify-center text-xl shadow`}>
-                      {service.icon}
+                    <span className={`w-10 h-10 ${service.iconBg} rounded-xl flex items-center justify-center shadow`}>
+                      <service.Icon className={`w-5 h-5 ${service.iconColor}`} />
                     </span>
                     <span className={`text-xs font-black px-3 py-1 rounded-full ${service.tagColor}`}>
                       {service.tagline}
@@ -270,7 +288,6 @@ export default function ServicesPage() {
                   <h3 className="text-xl font-black text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed mb-5 flex-1">{service.description}</p>
 
-                  {/* Quick features */}
                   <ul className="space-y-2 mb-5">
                     {service.features.slice(0, 3).map((f) => (
                       <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
@@ -280,11 +297,10 @@ export default function ServicesPage() {
                     ))}
                   </ul>
 
-                  {/* Stats */}
                   <div className="grid grid-cols-3 gap-2 mb-5 p-3 bg-red-50/60 rounded-xl">
                     {[
                       { label: "Students", value: service.stats.students },
-                      { label: "Success", value: service.stats.successRate },
+                      { label: "Success",  value: service.stats.successRate },
                       { label: "Partners", value: service.stats.partners },
                     ].map((stat) => (
                       <div key={stat.label} className="text-center">
@@ -317,17 +333,11 @@ export default function ServicesPage() {
             <span className="text-red-600 font-black text-xs uppercase tracking-[0.2em]">How We Work</span>
             <h2 className="text-4xl font-black text-gray-900 mt-2">Our Simple 5-Step Process</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 relative">
-            {[
-              { num: "01", icon: "👤", label: "Profile Assessment" },
-              { num: "02", icon: "🎯", label: "Plan Your Path" },
-              { num: "03", icon: "📋", label: "Prepare Documents" },
-              { num: "04", icon: "🚀", label: "Apply & Track" },
-              { num: "05", icon: "✈️", label: "Fly & Succeed" },
-            ].map((step, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+            {processSteps.map((step, i) => (
               <div key={i} className="flex flex-col items-center text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-red-200 mb-3 relative">
-                  {step.icon}
+                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-700 rounded-2xl flex items-center justify-center shadow-lg shadow-red-200 mb-3 relative">
+                  <step.Icon className="w-7 h-7 text-white" />
                   <span className="absolute -top-2 -right-2 w-6 h-6 bg-red-900 text-white rounded-full flex items-center justify-center text-xs font-black">
                     {step.num}
                   </span>
@@ -347,16 +357,10 @@ export default function ServicesPage() {
             Book a free consultation with our expert counselors today — no commitment required.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="bg-white text-red-700 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition"
-            >
+            <Link href="/contact" className="bg-white text-red-700 font-black px-8 py-4 rounded-xl hover:bg-red-50 transition">
               Book Free Consultation
             </Link>
-            <Link
-              href="/universities"
-              className="border-2 border-white/60 text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition"
-            >
+            <Link href="/universities" className="border-2 border-white/60 text-white font-black px-8 py-4 rounded-xl hover:bg-white/10 transition">
               Browse Universities
             </Link>
           </div>

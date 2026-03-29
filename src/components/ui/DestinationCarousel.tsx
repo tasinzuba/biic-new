@@ -1,14 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import Flag from "@/components/Flag";
 
 const destinations = [
-  { name: "United Kingdom", slug: "uk", flag: "🇬🇧", universities: "130+", students: "600K+", image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" },
-  { name: "United States", slug: "usa", flag: "🇺🇸", universities: "4,000+", students: "1M+", image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&q=80" },
-  { name: "Canada", slug: "canada", flag: "🇨🇦", universities: "100+", students: "800K+", image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&q=80" },
-  { name: "Australia", slug: "australia", flag: "🇦🇺", universities: "40+", students: "700K+", image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80" },
-  { name: "Germany", slug: "germany", flag: "🇩🇪", universities: "400+", students: "400K+", image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80" },
-  { name: "Malaysia", slug: "malaysia", flag: "🇲🇾", universities: "50+", students: "150K+", image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80" },
+  { name: "United Kingdom", slug: "uk",        code: "GB", universities: "130+",   students: "600K+",  image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" },
+  { name: "United States",  slug: "usa",       code: "US", universities: "4,000+", students: "1M+",    image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?w=800&q=80" },
+  { name: "Canada",         slug: "canada",    code: "CA", universities: "100+",   students: "800K+",  image: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=800&q=80" },
+  { name: "Australia",      slug: "australia", code: "AU", universities: "40+",    students: "700K+",  image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800&q=80" },
+  { name: "Germany",        slug: "germany",   code: "DE", universities: "400+",   students: "400K+",  image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800&q=80" },
+  { name: "Malaysia",       slug: "malaysia",  code: "MY", universities: "50+",    students: "150K+",  image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&q=80" },
 ];
 
 const items = [...destinations, ...destinations];
@@ -82,7 +83,7 @@ export default function DestinationCarousel() {
 
               {/* Top: flag + unis badge */}
               <div className="absolute top-4 left-4 right-4 flex items-center justify-between" style={{zIndex:10}}>
-                <span className="text-3xl drop-shadow-lg">{d.flag}</span>
+                <Flag code={d.code} size="2rem" />
                 <span className="bg-white/20 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-full border border-white/25 tracking-wide">
                   {d.universities} Unis
                 </span>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import Flag from "@/components/Flag";
 import { fetchGraphQL } from "@/lib/graphql/fetcher";
 import { GET_COUNTRY_BY_SLUG, GET_ALL_COUNTRIES } from "@/lib/graphql/queries/country";
 
@@ -58,7 +59,7 @@ export default async function CountryPage({ params }: Props) {
 
   const data = {
     name: raw.title ?? country,
-    flag: cd.flag ?? "🌍",
+    flag: cd.flag ?? "UN",
     heroImage: raw.featuredImage?.node?.sourceUrl ?? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80",
     subtitle: cd.heroSubtitle ?? "",
     description: cd.description ?? "",
@@ -117,7 +118,7 @@ export default async function CountryPage({ params }: Props) {
       university: s.university,
       course: s.course,
       year: s.year,
-      flag: s.studentFlag ?? "🌍",
+      flag: s.studentFlag ?? "UN",
       story: s.story,
       rating: s.rating ?? 5,
     })),
@@ -158,7 +159,7 @@ export default async function CountryPage({ params }: Props) {
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-5xl">{data.flag}</span>
+              <Flag code={data.flag} size="3.5rem" />
               <span className="bg-white/20 backdrop-blur text-white text-sm font-semibold px-4 py-1.5 rounded-full border border-white/30">
                 Study Destination
               </span>
@@ -547,7 +548,7 @@ export default async function CountryPage({ params }: Props) {
                       <div className="text-red-600 text-xs font-semibold truncate">{story.university}</div>
                       <div className="text-gray-400 text-xs">{story.course} · {story.year}</div>
                     </div>
-                    <span className="text-2xl">{story.flag}</span>
+                    <Flag code={story.flag} size="1.5rem" />
                   </div>
                 </div>
               ))}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import Flag from "@/components/Flag";
 
 type Props = { params: Promise<{ location: string }> };
 
@@ -8,7 +9,7 @@ const locationData: Record<string, any> = {
   london: {
     name: "London",
     country: "United Kingdom",
-    countryFlag: "🇬🇧",
+    countryFlag: "GB",
     heroImage: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=1600&q=80",
     tagline: "The world's greatest student city",
     overview:
@@ -46,7 +47,7 @@ const locationData: Record<string, any> = {
   manchester: {
     name: "Manchester",
     country: "United Kingdom",
-    countryFlag: "🇬🇧",
+    countryFlag: "GB",
     heroImage: "https://images.unsplash.com/photo-1567449303078-57ad995bd329?w=1600&q=80",
     tagline: "A vibrant city with world-class universities",
     overview:
@@ -83,7 +84,7 @@ const locationData: Record<string, any> = {
   toronto: {
     name: "Toronto",
     country: "Canada",
-    countryFlag: "🇨🇦",
+    countryFlag: "CA",
     heroImage: "https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1600&q=80",
     tagline: "Canada's largest city and top student hub",
     overview:
@@ -120,7 +121,7 @@ const locationData: Record<string, any> = {
   sydney: {
     name: "Sydney",
     country: "Australia",
-    countryFlag: "🇦🇺",
+    countryFlag: "AU",
     heroImage: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=1600&q=80",
     tagline: "Sunshine, harbour, and world-class education",
     overview:
@@ -159,7 +160,7 @@ const locationData: Record<string, any> = {
 const defaultLocation = {
   name: "This City",
   country: "Unknown",
-  countryFlag: "🌍",
+  countryFlag: "UN",
   heroImage: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=80",
   tagline: "Explore student life in this city",
   overview: "Discover what it's like to study and live in this exciting destination.",
@@ -198,7 +199,7 @@ export default async function LocationPage({ params }: Props) {
         <div className="relative z-10 max-w-6xl mx-auto px-6 w-full">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
-              <span className="text-4xl">{data.countryFlag}</span>
+              <Flag code={data.countryFlag} size="2.5rem" />
               <span className="bg-white/20 backdrop-blur border border-white/30 text-white text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-wider">
                 {data.country}
               </span>

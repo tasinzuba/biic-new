@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import Flag from "@/components/Flag";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -20,28 +21,28 @@ const team = [
     title: "CEO & Founder",
     bio: "15+ years in international education. Former student at the University of Manchester. Passionate about making global education accessible to every Bangladeshi student.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&q=80",
-    country: "🇬🇧 UK Specialist",
+    flags: ["GB"], country: "UK Specialist",
   },
   {
     name: "Dr. Sarah Ahmed",
     title: "Head of Counseling",
     bio: "PhD from UCL London. Expert in UK and Commonwealth university admissions with a 99% SOP acceptance rate among her students.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80",
-    country: "🇬🇧 🇦🇺 UK & Australia",
+    flags: ["GB", "AU"], country: "UK & Australia",
   },
   {
     name: "James Wilson",
     title: "Visa Expert",
     bio: "10+ years as a visa consultant. Has successfully processed 3,000+ student visa applications across UK, USA, Canada, and Australia.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80",
-    country: "🇺🇸 🇨🇦 USA & Canada",
+    flags: ["US", "CA"], country: "USA & Canada",
   },
   {
     name: "Maria Rahman",
     title: "IELTS Head Coach",
     bio: "Former British Council examiner. Has coached over 2,000 students to their target IELTS band. Average student score improvement: +1.5 bands.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&q=80",
-    country: "🌍 All Countries",
+    flags: [], country: "All Countries",
   },
 ];
 
@@ -270,7 +271,8 @@ export default function AboutPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-red-950/80 to-transparent" />
                   <div className="absolute bottom-3 left-4">
-                    <span className="text-xs bg-red-600 text-white font-semibold px-2.5 py-1 rounded-full">
+                    <span className="flex items-center gap-1 text-xs bg-red-600 text-white font-semibold px-2.5 py-1 rounded-full">
+                      {member.flags.map((f) => <Flag key={f} code={f} size="1em" />)}
                       {member.country}
                     </span>
                   </div>

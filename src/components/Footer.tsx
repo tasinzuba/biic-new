@@ -1,6 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import Flag from "@/components/Flag";
 import { FaFacebookF, FaInstagram, FaYoutube, FaLinkedinIn, FaLocationDot, FaClock, FaPhone, FaEnvelope } from "react-icons/fa6";
+import { getSiteSettings } from "@/lib/graphql/settings";
 
 const destinations = [
   { name: "UK",          code: "GB", slug: "uk" },
@@ -30,7 +32,8 @@ const quickLinks = [
   { label: "Our Sitemap",      href: "/sitemap" },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  const { logoUrl, logoAlt } = await getSiteSettings();
   return (
     <footer className="bg-white text-gray-700">
       {/* World map background */}
@@ -47,13 +50,19 @@ export default function Footer() {
             <div className="lg:col-span-1">
               {/* Logo */}
               <Link href="/" className="flex items-center gap-3 mb-5">
-                <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-lg border-4 border-red-100 flex-shrink-0">
-                  B
-                </div>
-                <div>
-                  <div className="text-red-600 font-bold text-base leading-tight">Banglay IELTS</div>
-                  <div className="text-gray-500 text-xs">& Immigration Center</div>
-                </div>
+                {logoUrl ? (
+                  <Image src={logoUrl} alt={logoAlt} width={160} height={44} className="h-11 w-auto object-contain" />
+                ) : (
+                  <>
+                    <div className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-lg border-4 border-red-100 flex-shrink-0">
+                      B
+                    </div>
+                    <div>
+                      <div className="text-red-600 font-bold text-base leading-tight">Banglay IELTS</div>
+                      <div className="text-gray-500 text-xs">& Immigration Center</div>
+                    </div>
+                  </>
+                )}
               </Link>
 
               {/* Contact details */}
@@ -145,29 +154,20 @@ export default function Footer() {
 
             {/* ICEF Badge */}
             <div className="flex items-start justify-center lg:justify-end">
-              <div className="bg-[#1a2e5a] rounded-2xl p-4 text-center w-36">
-                <div className="flex items-center justify-center gap-1 mb-1">
-                  <div className="w-4 h-4 rounded-full bg-blue-400 flex items-center justify-center">
-                    <span className="text-white text-[8px] font-black">✓</span>
-                  </div>
-                  <span className="text-white text-[10px] font-black tracking-wide">ICEF ACCREDITED</span>
-                </div>
-                <div className="text-blue-200 text-[9px] font-bold uppercase tracking-widest mb-2">
-                  ICEF AGENCY STATUS
-                </div>
-                {/* QR placeholder */}
-                <div className="bg-white rounded-lg p-2 mb-2 mx-auto w-20 h-20 flex items-center justify-center">
-                  <div className="grid grid-cols-5 gap-0.5 w-full h-full">
-                    {Array.from({length: 25}).map((_, i) => (
-                      <div key={i} className={`rounded-sm ${[0,1,2,3,4,5,9,10,14,15,19,20,21,22,23,24,6,12,18].includes(i) ? "bg-gray-800" : "bg-white"}`} />
-                    ))}
-                  </div>
-                </div>
-                <div className="text-blue-300 text-[11px] font-black">#6389</div>
-                <div className="text-blue-200 text-[9px] font-semibold uppercase tracking-widest">
-                  TRUSTED AGENCY
-                </div>
-              </div>
+              <a
+                href="https://www.icef.com/agency/001bG000001BvdZQAS"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:opacity-80 transition"
+              >
+                <Image
+                  src="https://icef-api-production.s3.eu-central-1.amazonaws.com/ias_material/001bG000001BvdZQAS_badge.png"
+                  alt="ICEF Accredited Agency"
+                  width={144}
+                  height={144}
+                  className="w-36 h-auto"
+                />
+              </a>
             </div>
 
           </div>

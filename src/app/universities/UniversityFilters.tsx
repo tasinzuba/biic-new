@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import Flag from "@/components/Flag";
+
+const TAB_FLAG: Record<string, string> = { UK: "GB", USA: "US", Canada: "CA", Australia: "AU" };
 
 type University = {
   name: string;
@@ -42,11 +45,8 @@ export default function UniversityFilters({ universities }: { universities: Univ
                   : "text-gray-600 hover:bg-gray-100"
               }`}
             >
-              {tab === "UK" && "🇬🇧 "}
-              {tab === "USA" && "🇺🇸 "}
-              {tab === "Canada" && "🇨🇦 "}
-              {tab === "Australia" && "🇦🇺 "}
-              {tab}
+              {TAB_FLAG[tab] && <Flag code={TAB_FLAG[tab]} size="1em" />}
+              {TAB_FLAG[tab] ? " " : ""}{tab}
               <span className="ml-2 text-xs opacity-70">
                 ({tab === "All" ? universities.length : universities.filter((u) => u.country === tab).length})
               </span>
@@ -73,8 +73,8 @@ export default function UniversityFilters({ universities }: { universities: Univ
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 {/* Badges */}
                 <div className="absolute top-3 left-3 flex gap-2">
-                  <span className="bg-white/90 backdrop-blur text-gray-800 text-xs font-bold px-3 py-1 rounded-full">
-                    {uni.countryFlag} {uni.country}
+                  <span className="bg-white/90 backdrop-blur text-gray-800 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                    <Flag code={uni.countryFlag} size="1em" /> {uni.country}
                   </span>
                 </div>
                 <span className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">

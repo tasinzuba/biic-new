@@ -5,12 +5,6 @@ import { useState } from "react";
 
 const topBarInfo = {
   text: "We are Open 7 days | +880 96138-20821 | 10AM-6PM",
-  socials: [
-    { label: "Facebook", icon: "f", href: "#" },
-    { label: "Instagram", icon: "in", href: "#" },
-    { label: "YouTube", icon: "▶", href: "#" },
-    { label: "LinkedIn", icon: "li", href: "#" },
-  ],
 };
 
 type NavChild = { label: string; href: string; sub?: string };
@@ -58,7 +52,23 @@ const navLinks: NavLink[] = [
   },
 ];
 
-export default function Header() {
+type HeaderProps = {
+  siteName?: string;
+  tagline?: string;
+  logoUrl?: string | null;
+  logoAlt?: string;
+  logoWidth?: number | null;
+  logoHeight?: number | null;
+};
+
+export default function Header({
+  siteName = "Banglay IELTS",
+  tagline = "& Immigration Center",
+  logoUrl = null,
+  logoAlt = "BIIC Global",
+  logoWidth = null,
+  logoHeight = null,
+}: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -97,13 +107,26 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xl border-4 border-red-100">
-              B
-            </div>
-            <div>
-              <div className="text-red-600 font-bold text-xl leading-tight">Banglay IELTS</div>
-              <div className="text-gray-500 text-xs">& Immigration Center</div>
-            </div>
+            {logoUrl ? (
+              <Image
+                src={logoUrl}
+                alt={logoAlt}
+                width={logoWidth ?? 200}
+                height={logoHeight ?? 56}
+                className="h-14 w-auto object-contain"
+                priority
+              />
+            ) : (
+              <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center text-white font-bold text-xl border-4 border-red-100 flex-shrink-0">
+                B
+              </div>
+            )}
+            {!logoUrl && (
+              <div>
+                <div className="text-red-600 font-bold text-xl leading-tight">{siteName}</div>
+                <div className="text-gray-500 text-xs">{tagline}</div>
+              </div>
+            )}
           </Link>
 
           {/* Desktop Nav */}
